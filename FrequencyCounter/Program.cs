@@ -23,6 +23,19 @@ if (!fileProvider.SaveReport(report, out string file, out string error))
 else
 {
     Console.WriteLine("Plik został pomyślnie zapisany");
+    try
+    {
+        if (fileProvider.GetOS() == "Win" && fileProvider.GetFileType() == "txt")
+        {
+            Thread.Sleep(1000);
+            Process.Start(file);
+        }        
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Nie można otworzyć pliku, błąd: {ex.Message}");
+    }
+    
 }
 
 Console.ReadLine();

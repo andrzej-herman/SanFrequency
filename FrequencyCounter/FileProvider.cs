@@ -56,7 +56,11 @@ namespace FrequencyCounter
                 string[] parts;
                 parts = os == "Win" ? path.Split("\\") : path.Split('/');
                 var fileName = $"{parts[parts.Length - 1]}.{fileType}";
-                destinationPath = os == "Win" ? $"{path}\\{fileName}" : $"{path}/{fileName}"; 
+                destinationPath = os == "Win" ? $"{path}\\{fileName}" : $"{path}/{fileName}";
+                var destPathSettings = configuration.GetSection("DestinationPathWin").Value;
+                if (!string.IsNullOrWhiteSpace(destPathSettings))
+                    destinationPath = $"{destPathSettings}\\{fileName}";
+
                 StringBuilder sb = new StringBuilder();
                 foreach (var item in report)
                     sb.AppendLine(item.ToString());
