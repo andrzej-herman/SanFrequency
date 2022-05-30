@@ -28,15 +28,12 @@ else
         if (fileProvider.GetOS() == "Win" && fileProvider.GetFileType() == "txt")
         {
             Thread.Sleep(1000);
-            Process.Start(file);
+            Process.Start("notepad.exe", file);
         }        
     }
     catch (Exception ex)
     {
         Console.WriteLine($"Nie można otworzyć pliku, błąd: {ex.Message}");
     }
-    
 }
-
-Console.ReadLine();
     
